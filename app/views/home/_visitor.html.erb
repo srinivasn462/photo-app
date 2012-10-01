@@ -1,7 +1,10 @@
-<h2>Welcome Guest...</h2>
+<div class="center hero-unit">
+  <h1>Welcome Guest...</h1>
+  <h2>This is the home page</h2>
+  <h3>Create an Account!</h3>
+  <%= link_to "Sign up now", new_user_registration_path, class: "btn btn-large btn-primary" %>
+</div>
 
 <h3>Already a Member?</h3>
 <%= render :partial => 'layouts/sign_in_form' %>
 
-<h3>Create an Account!</h3>
-<%= link_to "Sign up now", new_user_registration_path %>
