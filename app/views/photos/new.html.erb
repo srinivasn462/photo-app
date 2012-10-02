@@ -1,0 +1,28 @@
+<h1>New Photo</h1>
+
+<%= form_for(@photo) do |f| %>
+
+  <fieldset>
+    <legend>Upload a Photo</legend>
+
+    <div class="control-group">
+      <label class="control-label">Photo</label>
+      <div class="controls">
+        <%= f.file_field :image_file %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :description, class: "control-label" %>
+      <div class="controls">
+        <%= f.text_field :description, class: "text_field" %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit "Upload", class: "btn btn-primary" %>
+      <%= link_to "Cancel", photos_path, class: "btn" %>
+    </div>
+  </fieldset>
+
+<% end %>

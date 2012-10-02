@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 gem 'bootstrap-sass', '2.0.4'
+gem 'carrierwave', '0.6.2'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
@@ -18,7 +19,7 @@ gem 'jquery-rails', '2.0.2'
 gem 'devise'
 
 group :test do
-  #gem 'capybara', '1.1.2'
+  #gem 'capybara', '1.1.2' #TODO: FIX THIS!
 end
 
 group :production do
