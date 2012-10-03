@@ -8,9 +8,10 @@
 <p>
   <b>Photo:</b><br />
   <%= image_tag @photo.photo_url if @photo.photo? %>
-  
 </p>
 
-
+<% if signed_in? %>
+<%= link_to "#{@comments.length} comments", photo_comments_path(@photo) %> |
 <%= link_to 'Edit', edit_photo_path(@photo) %> |
+<% end %>
 <%= link_to 'Back', photos_path %>

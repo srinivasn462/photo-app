@@ -5,22 +5,3 @@
   <%= render :partial => 'visitor' %>
 <% end %>
 
-<h2>Recent Photos...</h2>
-<div class="row">
-  <% @photos.each do |photo| %>
-    <div class="span3">
-      <%= link_to image_tag(photo.photo_url(:thumb)), 
-        photo_path(photo) %>
-    </div>
-  <% end %>
-
-  <div class="offset1 span2 lead">
-    <%= link_to "See all...", photos_path %>
-  </div>
-
-</div>
-
-<% unless signed_in? %>
-  <h3>Already a Member?</h3>
-  <%= render :partial => 'layouts/sign_in_form' %>
-<% end %>

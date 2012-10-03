@@ -1,7 +1,37 @@
 <div class="center hero-unit">
-  <h1>Welcome Guest...</h1>
-  <h2>This is the home page</h2>
-  <h3>Create an Account!</h3>
-  <%= link_to "Sign up now", new_user_registration_path, class: "btn btn-large btn-primary" %>
+  <h1>Welcome Guest!</h1>
+
+  <h2>Share and comment on photos with the rest of the world!</h2>
+  <div class="row">
+    <% @photos.each do |photo| %>
+      <div class="span3">
+        <%= link_to image_tag(photo.photo_url(:thumb)), 
+          photo_path(photo) %>
+      </div>
+    <% end %>
+
+    <div class="offset1 span2 lead">
+      <%= link_to "See all...", photos_path %>
+    </div>
+
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="span4">
+    <h3>Already a Member?</h3>
+    <%= render :partial => "layouts/sign_in_form" %>
+  </div>
+
+  <div class="span4">
+    <h3>Itching to Join?</h3>
+    <div>
+    <%= link_to "Sign up now", 
+      new_user_registration_path, 
+      class: "btn btn-large btn-primary" %>
+    </div>
+  </div>
+
 </div>
 

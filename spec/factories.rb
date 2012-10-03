@@ -2,6 +2,7 @@ require 'factory_girl'
 include ActionDispatch::TestProcess
 
 FactoryGirl.define do
+
   factory :user do
     sequence(:email) { |n| "person#{n}@example.com" }
     password "secret"
@@ -12,4 +13,11 @@ FactoryGirl.define do
     description "test photo"
     photo { fixture_file_upload(Rails.root.join('spec', 'photos', 'LeadvilleHike.jpg'), 'image/jpg') }
   end
+
+  factory :comment do
+    photo
+    name "tester"
+    comment "fake comment"
+  end
+
 end

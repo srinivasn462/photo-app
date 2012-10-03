@@ -1,4 +1,17 @@
 <div class="center hero-unit">
   <h1>You are signed in!</h1>
-  <h2>Good for you... good for you.</h2>
+  <h2>Share and comment on photos with the rest of the world!</h2>
+  <div class="row">
+    <% @photos.each do |photo| %>
+      <div class="span3">
+        <%= link_to image_tag(photo.photo_url(:thumb)), 
+          photo_path(photo) %>
+      </div>
+    <% end %>
+
+    <div class="offset1 span2 lead">
+      <%= link_to "See all...", photos_path %>
+    </div>
+
+  </div>
 </div>
