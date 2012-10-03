@@ -1,6 +1,7 @@
 *.rbc
 *.swp
 *.sassc
+/config/fog_credentials.yml
 .sass-cache
 capybara-*.html
 .rspec
