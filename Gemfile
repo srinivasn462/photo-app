@@ -4,6 +4,7 @@ gem 'rails', '3.2.8'
 gem 'bootstrap-sass', '2.0.4'
 gem "rmagick", '2.13.1'
 gem 'carrierwave', '0.6.2'
+gem 'fog', '1.3.1'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'

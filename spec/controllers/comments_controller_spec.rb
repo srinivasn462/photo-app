@@ -7,7 +7,6 @@ describe CommentsController do
 
   before(:each) do
     @photo = FactoryGirl.create(:photo)
-    @attr = FactoryGirl.attributes_for(:comment, :photo_id => @photo.id)
   end
 
   describe "GET index" do
@@ -45,23 +44,19 @@ describe CommentsController do
     describe "with valid params" do
       it "creates a new Comment" do
         expect {
-          post :create, :photo_id => @photo.id, :comment => @attr
+          post :create, photo_id: @photo.id, comment: { comment: "new comment" }
         }.to change(Comment, :count).by(1)
       end
 
       it "assigns a newly created comment as @comment" do
-        comment_attributes = FactoryGirl.attributes_for(:comment,
-                                                        :photo_id => @photo.id)
-        post :create, :photo_id => @photo.id, 
-          :comment => comment_attributes
+        post :create, photo_id: @photo.id, comment: FactoryGirl.attributes_for(:comment, photo: @photo)
         assigns(:comment).should be_a(Comment)
         assigns(:comment).should be_persisted
       end
 
       it "redirects to the created comment" do
-        post :create, :photo_id => @photo.id, 
-          :comment => FactoryGirl.attributes_for(:comment, :photo_id => @photo.id)
-        response.should redirect_to(photo_comments_path(@photo))
+        post :create, photo_id: @photo.id, comment: FactoryGirl.attributes_for(:comment, photo: @photo)
+        response.should redirect_to(@photo)
       end
     end
 
@@ -97,18 +92,16 @@ describe CommentsController do
       end
 
       it "assigns the requested comment as @comment" do
-        comment = FactoryGirl.create(:comment)
-        put :update, {:photo_id => comment.photo_id, 
-          :id => comment.id, :comment => @attr}
+        comment = @photo.comments.create
+        put :update, photo_id: comment.photo_id, id: comment.id, comment: { :comment => "updated"}
         assigns(:comment).should eq(comment)
       end
 
       it "redirects to the comment" do
         comment = FactoryGirl.create(:comment)
-        put :update, {:photo_id => comment.photo_id, 
-          :id => comment.to_param, 
-          :comment => @attr}
-        response.should redirect_to(comment)
+        put :update, photo_id: comment.photo_id, id: comment.id, 
+          comment: FactoryGirl.attributes_for(:comment, photo: nil)
+        response.should redirect_to(comment.photo)
       end
     end
 
@@ -142,7 +135,7 @@ describe CommentsController do
     it "redirects to the comments list" do
       comment = FactoryGirl.create(:comment)
       delete :destroy, { :photo_id => comment.photo_id, :id => comment.to_param}
-      response.should redirect_to(photo_comments_url(comment.photo))
+      response.should redirect_to(comment.photo)
     end
   end
 
