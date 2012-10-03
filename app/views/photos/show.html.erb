@@ -6,18 +6,9 @@
 </p>
 
 <p>
-  <b>Content type:</b>
-  <%= @photo.content_type %>
-</p>
-
-<p>
-  <b>File name:</b>
-  <%= @photo.file_name %>
-</p>
-
-<p>
-  <b>Binary data:</b>
-  <%= @photo.binary_data %>
+  <b>Photo:</b><br />
+  <%= image_tag @photo.photo_url if @photo.photo? %>
+  
 </p>
 
 

@@ -4,7 +4,6 @@
   <thead>
     <tr>
       <th>Description</th>
-      <th>Content type</th>
       <th>Photo</th>
       <th></th>
       <th></th>
@@ -13,9 +12,8 @@
   <tbody>
   <% @photos.each do |photo| %>
     <tr>
-      <td><%= link_to 'Show', photo.description %></td>
-      <td><%= photo.content_type %></td>
-      <td><%= image_tag("/photos/code_image/#{photo.id}", alt: photo.file_name) %></td>
+      <td><%= link_to photo.description, photo_path(photo) %></td>
+      <td><%= image_tag photo.photo_url(:thumb) %></td>
       <td><%= link_to 'Edit', edit_photo_path(photo), class: 'btn' %></td>
       <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
     </tr>
